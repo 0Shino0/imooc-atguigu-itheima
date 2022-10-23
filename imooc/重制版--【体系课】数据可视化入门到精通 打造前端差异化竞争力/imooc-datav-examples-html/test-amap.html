@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#container {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	#container {position: relative;}
+	#tools {position: absolute;right:10px;top:10px;}
+	.amap-logo {display: none!important;}
+	.amap-copyright {display: none!important;}
+	.marker {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		color: #fff;
+		padding: 4px 10px;
+		box-shadow: 1px 1px 1px rgba(10, 10, 10, .2);
+		white-space: nowrap;
+		font-size: 12px;
+		font-family: "";
+		background-color: #25A5F7;
+		border-radius: 3px;
+	}
+	</style>
+	<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=e8653883477c1e38d190463340771816&plugin=AMap.PolyEditor"></script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="container"></div>
+	<div id="tools">
+		<div>
+			<button id="show-traf">显示交通</button>
+			<button id="hide-traf">隐藏交通</button>
+		</div>
+		<div>
+			<button id="show-sate">显示卫星</button>
+			<button id="hide-sate">隐藏卫星</button>
+		</div>
+		<div>
+			<button id="show-road">显示道路</button>
+			<button id="hide-road">隐藏道路</button>
+		</div>
+		<div>
+			<button id="show-point">绘制点</button>
+			<button id="hide-point">隐藏点</button>
+		</div>
+		<div>
+			<button id="show-text">绘制文本</button>
+			<button id="hide-text">隐藏文本</button>
+		</div>
+		<div>
+			<button id="show-line">绘制线条</button>
+			<button id="hide-line">隐藏线条</button>
+		</div>
+		<div>
+			<button id="start-edit-line">编辑线条</button>
+			<button id="close-edit-line">停止编辑</button>
+		</div>
+		<div>
+			<button id="show-circle">绘制圆圈</button>
+			<button id="hide-circle">隐藏圆圈</button>
+		</div>
+		<div>
+			<button id="show-info">绘制窗口</button>
+			<button id="hide-info">隐藏窗口</button>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var sateLayer = new AMap.TileLayer.Satellite(),
+		roadLayer = new AMap.TileLayer.RoadNet(),
+		trafficLayer = new AMap.TileLayer.Traffic({
+			zIndex: 10
+		});
+  var map = new AMap.Map('container', {
+		zoom: 11, //级别
+		zooms: [8, 15],
+		// layers: [
+		// 	sateLayer,
+		// 	roadLayer
+		// ],
+		center: [116.397428, 39.90923], //中心点坐标
+		viewMode: '3D' //使用3D视图
+	});
+	AMap.plugin(['AMap.ToolBar','AMap.Scale'], function(){//异步加载插件
+		var toolbar = new AMap.ToolBar();
+		map.addControl(toolbar);
+		var scale = new AMap.Scale({
+			offset: new AMap.Pixel(10, 10)
+		});
+		map.addControl(scale);
+	});
+	var marker = new AMap.Marker({
+		icon: "https://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+		position: [116.406315,39.908775],
+		offset: new AMap.Pixel(-13, -30)
+	});
+	var contentMarker = new AMap.Marker({
+		position: [116.406315,39.908775],
+		offset: new AMap.Pixel(130, 0)
+	});
+	var markerContent = document.createElement("div");
+	var markerSpan = document.createElement("span");
+	markerSpan.className = 'marker';
+	markerSpan.innerHTML = "欢迎学习数据可视化！";
+	markerContent.appendChild(markerSpan);
+
+	var lineArr = [
+		[116.368904, 39.913423],
+		[116.382122, 39.901176],
+		[116.387271, 39.912501],
+		[116.398258, 39.904600]
+	];
+	var polyline = new AMap.Polyline({
+		path: lineArr,          //设置线覆盖物路径
+		strokeColor: "#3366FF", //线颜色
+		strokeWeight: 5,        //线宽
+		strokeStyle: "solid",   //线样式
+	});
+
+	var infoMarker = new AMap.Marker({
+		position: [116.481181, 39.989792]
+	});
+	var infoWindow = new AMap.InfoWindow({ //创建信息窗体
+		isCustom: true,  //使用自定义窗体
+		content:'<div style="color:red;">信息窗体</div>', //信息窗体的内容可以是任意html片段
+		offset: new AMap.Pixel(16, -45)
+	});
+	var onMarkerClick = function(e) {
+		infoWindow.open(map, e.target.getPosition());//打开信息窗体
+	};
+	infoMarker.on('click', onMarkerClick); //绑定click事件
+
+	var polyEditor = new AMap.PolyEditor(map, polyline)
+
+	var circle = new AMap.Circle({
+    center: new AMap.LngLat(116.39, 39.9),  // 圆心位置
+    radius: 1000, // 圆半径
+    fillColor: 'red',   // 圆形填充颜色
+    strokeColor: '#fff', // 描边颜色
+    strokeWeight: 2 // 描边宽度
+	});
+
+	document.getElementById('show-traf').addEventListener('click', function(e){
+    map.add(trafficLayer); //添加图层到地图
+		trafficLayer.show();
+	});
+	document.getElementById('hide-traf').addEventListener('click', function(e){
+    trafficLayer.hide();
+	});
+	document.getElementById('show-sate').addEventListener('click', function(e){
+    map.add(sateLayer); //添加图层到地图
+		sateLayer.show();
+	});
+	document.getElementById('hide-sate').addEventListener('click', function(e){
+    sateLayer.hide();
+	});
+	document.getElementById('show-road').addEventListener('click', function(e){
+    map.add(roadLayer); //添加图层到地图
+		roadLayer.show();
+	});
+	document.getElementById('hide-road').addEventListener('click', function(e){
+    roadLayer.hide();
+	});
+	document.getElementById('show-point').addEventListener('click', function(e){
+    map.add(marker);
+		// marker.setMap(map);
+	});
+	document.getElementById('hide-point').addEventListener('click', function(e){
+    map.remove(marker);
+	});
+	document.getElementById('show-text').addEventListener('click', function(e){
+    contentMarker.setMap(map);
+		contentMarker.setContent(markerContent); //更新点标记内容
+		contentMarker.setPosition([116.391467, 39.927761]); //更新点标记位置
+	});
+	document.getElementById('hide-text').addEventListener('click', function(e){
+		map.remove(contentMarker);
+	});
+	document.getElementById('show-line').addEventListener('click', function(e){
+    map.add(polyline);
+	});
+	document.getElementById('hide-line').addEventListener('click', function(e){
+		map.remove(polyline);
+	});
+	document.getElementById('start-edit-line').addEventListener('click', function(e){
+    polyEditor.open();
+	});
+	document.getElementById('close-edit-line').addEventListener('click', function(e){
+		polyEditor.close();
+	});
+	document.getElementById('show-circle').addEventListener('click', function(e){
+    map.add(circle);
+	});
+	document.getElementById('hide-circle').addEventListener('click', function(e){
+		map.remove(circle);
+	});
+	document.getElementById('show-info').addEventListener('click', function(e){
+		map.add(infoMarker);
+	});
+	document.getElementById('hide-info').addEventListener('click', function(e){
+		map.remove(infoMarker);
+		infoWindow.close();
+	});
+</script>

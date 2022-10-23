@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	#allmap {position: relative;}
+	#tools {position: absolute;left:0;top:0;z-index: 1000;}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=G1LFyjrNGIkns5OfpZnrCGAKxpycPLwb"></script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="allmap"></div>
+	<div id="tools">
+		<button id="start">播放动画</button>
+		<button id="end">停止播放</button>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+  var bmap = new BMapGL.Map("allmap");                          // 创建Map实例
+	bmap.centerAndZoom(new BMapGL.Point(116.414, 39.915), 20);    // 初始化地图，设置中心点坐标和地图级别
+	bmap.enableScrollWheelZoom(true);                             // 开启鼠标滚轮缩放
+	bmap.setTilt(20);                              // 设置地图初始倾斜角度
+	var keyFrames = [
+		{
+			center: new BMapGL.Point(116.307092,40.054922),
+			zoom:20,
+			tilt: 50,
+			heading: 0,
+			percentage: 0
+		},
+		{
+			center: new BMapGL.Point(116.307631,40.055391),
+			zoom: 21,
+			tilt: 70,
+			heading: 0,
+			percentage: 0.1
+		},
+		{
+			center: new BMapGL.Point(116.306858,40.057887),
+			zoom:21,
+			tilt: 70,
+			heading: 0,
+			percentage: 0.25
+		},
+		{
+			center: new BMapGL.Point(116.306858,40.057887),
+			zoom:21,
+			tilt: 70,
+			heading: -90,
+			percentage: 0.35
+		},
+		{
+			center: new BMapGL.Point(116.307904,40.058118),
+			zoom: 21,
+			tilt: 70,
+			heading: -90,
+			percentage: 0.45
+		},
+		{
+			center: new BMapGL.Point(116.307904,40.058118),
+			zoom: 21,
+			tilt: 70,
+			heading: -180,
+			percentage: 0.55
+		},
+		{
+			center: new BMapGL.Point(116.308902,40.055954),
+			zoom:21,
+			tilt: 70,
+			heading: -180,
+			percentage: 0.75
+		},
+		{
+			center: new BMapGL.Point(116.308902,40.055954),
+			zoom:21,
+			tilt: 70,
+			heading: -270,
+			percentage: 0.85
+		},
+		{
+			center: new BMapGL.Point(116.307779,40.055754),
+			zoom:21,
+			tilt: 70,
+			heading: -360,
+			percentage: 0.95
+		},
+		{
+			center: new BMapGL.Point(116.307092,40.054922),
+			zoom:20,
+			tilt: 50,
+			heading: -360,
+			percentage: 1
+		},
+	];
+	var opts = {
+    duration: 10000,     // 设置每次迭代动画持续时间
+    delay: 3000,         // 设置动画延迟开始时间
+    interation: 'INFINITE'        // 设置动画迭代次数
+	};
+	var animation = new BMapGL.ViewAnimation(keyFrames, opts);        // 初始化动画实例
+	animation.addEventListener('animationstart', function(e) {        // 监听动画开始事件
+		console.log('start');
+	});
+	animation.addEventListener('animationiterations', function(e) {   // 监听动画迭代事件
+		console.log('onanimationiterations');
+	});
+	animation.addEventListener('animationend', function(e) {        // 监听动画结束事件
+		console.log('end');
+	});
+	animation.addEventListener('animationcancel', function(e) {       // 监听动画中途被终止事件
+		console.log('cancel');
+	});
+	document.getElementById('start').addEventListener('click', function() {
+		bmap.startViewAnimation(animation);         // 开始播放动画
+	});
+	document.getElementById('end').addEventListener('click', function() {
+		bmap.cancelViewAnimation(animation);         // 强制停止动画
+	});
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=G1LFyjrNGIkns5OfpZnrCGAKxpycPLwb"></script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+    // GL版命名空间为BMapGL
+    // 按住鼠标右键，修改倾斜角和角度
+	var map = new BMapGL.Map("allmap");
+  map.centerAndZoom(new BMapGL.Point(118.5, 27.5), 5);
+	map.enableScrollWheelZoom(true);
+	map.setMapType(BMAP_EARTH_MAP);      // 设置地图类型为地球模式
+	var scaleCtrl = new BMapGL.ScaleControl({ 
+		anchor: BMAP_ANCHOR_TOP_LEFT,
+		offset: new BMapGL.Size(100, 10)
+	});  // 添加比例尺控件
+	map.addControl(scaleCtrl);
+	var zoomCtrl = new BMapGL.ZoomControl({ 
+		anchor: BMAP_ANCHOR_BOTTOM_LEFT
+	});  // 添加比例尺控件
+	map.addControl(zoomCtrl);
+</script>

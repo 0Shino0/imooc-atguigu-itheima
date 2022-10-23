@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#container {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	#container {position: relative;}
+	#tools {position: absolute;left:10px;top:10px;}
+	</style>
+	<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=e8653883477c1e38d190463340771816"></script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="container"></div>
+	<div id="tools">
+		<div>
+			<button id="show-traf">显示交通</button>
+			<button id="hide-traf">隐藏交通</button>
+		</div>
+		<div>
+			<button id="show-sate">显示卫星</button>
+			<button id="hide-sate">隐藏卫星</button>
+		</div>
+		<div>
+			<button id="show-road">显示道路</button>
+			<button id="hide-road">隐藏道路</button>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	window.init = init;
+	var url = 'https://webapi.amap.com/maps?v=1.4.15&key=e8653883477c1e38d190463340771816&callback=init';
+	var jsapi = document.createElement('script');
+	jsapi.charset = 'utf-8';
+	jsapi.src = url;
+	document.head.appendChild(jsapi);
+	function init() {
+		var sateLayer = new AMap.TileLayer.Satellite(),
+			roadLayer = new AMap.TileLayer.RoadNet(),
+			trafficLayer = new AMap.TileLayer.Traffic({
+				zIndex: 10
+			});
+		var map = new AMap.Map('container', {
+			zoom: 11, //级别
+			zooms: [8, 12],
+			center: [116.397428, 39.90923], //中心点坐标
+			viewMode: '3D' //使用3D视图
+		});
+		document.getElementById('show-traf').addEventListener('click', function(e){
+			map.add(trafficLayer); //添加图层到地图
+			trafficLayer.show();
+		});
+		document.getElementById('hide-traf').addEventListener('click', function(e){
+			trafficLayer.hide();
+		});
+		document.getElementById('show-sate').addEventListener('click', function(e){
+			map.add(sateLayer); //添加图层到地图
+			sateLayer.show();
+		});
+		document.getElementById('hide-sate').addEventListener('click', function(e){
+			sateLayer.hide();
+		});
+		document.getElementById('show-road').addEventListener('click', function(e){
+			map.add(roadLayer); //添加图层到地图
+			roadLayer.show();
+		});
+		document.getElementById('hide-road').addEventListener('click', function(e){
+			roadLayer.hide();
+		});
+	}
+</script>

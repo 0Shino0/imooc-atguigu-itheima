@@ -1,0 +1,16 @@
+{
+  "name": "imooc-datav-docs",
+  "version": "1.0.0",
+  "description": "慕课网数据可视化体系课配套官网",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<title>异步地图展示</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+	function init() { 
+		var map = new BMapGL.Map('allmap'); 
+		var point = new BMapGL.Point(116.404, 39.915);
+		map.centerAndZoom(point, 12);
+		map.enableScrollWheelZoom(true);
+	} 
+			
+	function loadScript() { 
+		var script = document.createElement("script"); 
+		script.src = "https://api.map.baidu.com/api?v=1.0&type=webgl&ak=G1LFyjrNGIkns5OfpZnrCGAKxpycPLwb&callback=init";
+		document.body.appendChild(script); 
+	} 
+			
+	window.onload = loadScript;
+</script>

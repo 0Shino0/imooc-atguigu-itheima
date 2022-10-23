@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		html,
+    body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+    }
+    #map_container {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+    }
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=G1LFyjrNGIkns5OfpZnrCGAKxpycPLwb"></script>
+	<script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
+	<script src="https://mapv.baidu.com/build/mapv.js"></script>
+	<script src="https://code.bdstatic.com/npm/mapvgl@1.0.0-beta.54/dist/mapvgl.min.js"></script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="map_container"></div>
+	<script type="text/javascript">
+		var map = initMap({
+			tilt: 80,
+			heading: -45.3,
+			center: [106.540547,29.564858],
+			zoom: 17
+    });
+		initData();
+		function initData() {
+			fetch('https://www.youbaobao.xyz/datav-res/examples/chongqing.json')
+				.then(res => res.json())
+				.then(res => {
+					var data = res;
+					var polygons = [];
+        	var len = data.length;
+        	for (var i = 0; i < len; i++) {
+            var line = data[i];
+            var polygon = [];
+            var pt = [line[1] * 512, line[2] * 512];
+            for (var j = 3; j < line.length; j += 2) {
+							pt[0] += line[j] / 100 / 2;
+							pt[1] += line[j + 1] / 100 / 2;
+							polygon.push([pt[0], pt[1]]);
+            }
+            polygons.push({
+							geometry: {
+								type: 'Polygon',
+								coordinates: [polygon]
+							},
+							properties: {
+								height: line[0] / 2
+							}
+            });
+					}
+					setData(polygons);
+				});
+		}
+		function setData(data) {
+			console.log(data);
+			var view = new mapvgl.View({
+        map: map
+    	});
+
+			var shaperLayer = new mapvgl.ShapeLayer({
+				color: 'rgb(0, 255, 255)',
+    		style: 'normal',
+				// opacity: 1.0, // 透明度
+				riseTime: 2000, // 楼房升起动画
+				enablePicked: true,
+				// riseTime: 1000,
+				opacity: 0.3, // 透明度
+				enablePicked: true, // 是否可以拾取
+				selectedIndex: -1, // 选中项
+				selectedColor: '#ee1111', // 选中项颜色
+				autoSelect: true, // 根据鼠标位置来自动设置选中项
+				onClick: (e) => { // 点击事件
+					console.log(e);
+				}
+			});
+
+			view.addLayer(shaperLayer);
+			shaperLayer.setData(data);
+		}
+	</script>	
+</body>
+</html>
