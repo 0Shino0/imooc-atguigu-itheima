@@ -1,0 +1,68 @@
+@mixin respond-to($media) {
+  @if $media == small-screens {
+    @media only screen and (max-width: $break-small) {
+      @content;
+      //   transition: width 1s;
+    }
+  } @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small +1) and (max-width: $break-media) {
+      @content;
+      //   transition: width 1s;
+    }
+  } @else if $media == big-screens {
+    @media only screen and (min-width: $break-media + 1) {
+      @content;
+      //   transition: width 0.2s;
+    }
+  } @else if $media == max-screens {
+    @media only screen and (min-width: $break-max) {
+      @content;
+      //   transition: width 0.2s;
+    }
+  } @else if $media == less-max-screens {
+    @media only screen and (max-width: $break-max) {
+      @content;
+      //   transition: width 0.2s;
+    }
+  }
+}
+
+@mixin resH-to($media) {
+  @if $media == small-screens {
+    @media only screen and (max-height: $height-small) {
+      @content;
+      //   transition: width 1s;
+    }
+  } @else if $media == medium-screens {
+    @media only screen and (min-height: $height-small +1) and (max-height: $height-media) {
+      @content;
+      //   transition: width 1s;
+    }
+  } @else if $media == big-screens {
+    @media only screen and (min-height: $height-media + 1) {
+      @content;
+      //   transition: width 0.2s;
+    }
+  }
+  //@else if $media == max-screens {
+  //  @media only screen and (min-height: $height-max){
+  //    @content;
+  //    //   transition: width 0.2s;
+  //  }
+  //}
+}
+
+%border-line {
+  position: relative;
+  &:not(:last-child):after {
+    position: absolute;
+    box-sizing: border-box;
+    content: ' ';
+    pointer-events: none;
+    right: 0;
+    bottom: 0;
+    left: 16px;
+    border-bottom: 1px solid #ebedf0;
+    transform: scaleY(0.5);
+  }
+}

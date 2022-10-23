@@ -1,0 +1,154 @@
+/* stylelint-disable number-leading-zero */
+@mixin shadow-elevated {
+  box-shadow: 0 0 1px rgb(0 0 0 / 30%), 0 4px 14px rgb(0 0 0 / 10%);
+}
+@mixin shadow-2 {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 14%), 0 0 1px rgb(0 0 0 / 16%);
+}
+@mixin shadow-0 {
+  box-shadow: none;
+}
+@mixin shadow-1 {
+  box-shadow: none;
+}
+@mixin shadow-knob {
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%), 0 0 1px rgb(0 0 0 / 30%);
+}
+
+@mixin box-sizing() {
+  box-sizing: border-box;
+}
+
+@mixin all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin ver-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin hor-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin text-overflow-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin no-scrollbar {
+  &::-webkit-scrollbar {
+    // width: 8px;
+    display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+
+    // background-color: $grey-2;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgb(0 0 0 / 5%);
+    background-color: transparent;
+    opacity: 0;
+
+    // background-color: $grey-0;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      display: block;
+      width: 8px;
+
+      // width: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--semi-gray-3);
+    }
+
+    &::-webkit-scrollbar-track {
+      // background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+@mixin btn() {
+  @include shadow-0;
+
+  position: relative;
+  display: inline-block;
+  border: $border-thickness-control solid transparent;
+  font-weight: $font-weight-regular;
+  text-align: center;
+  white-space: nowrap;
+
+  // box-shadow: $btn-shadow;
+  transition: all 0.3s $ease-in-out;
+  background-image: none;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+
+  &,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
+
+  &:not([disabled]):hover {
+    text-decoration: none;
+  }
+
+  &:not([disabled]):active {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  &[disabled],
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    > * {
+      pointer-events: none;
+    }
+  }
+}
+
+@mixin btn-size($py, $px, $font-size, $border-radius) {
+  border-radius: $border-radius;
+  padding: $py $px;
+  font-size: $font-size;
+}
+
+// 背景色，文字色，边框色
+// hover颜色 -> focus颜色
+// darken & lighten -> 16进制颜色
+// css variables 不能使用lighten
+@mixin btn-style(
+  $background-color,
+  $border-color,
+  $color,
+  $background-color-hover,
+  $border-color-hover,
+  $color-hover
+) {
+  border-color: $border-color;
+  color: $color;
+  background-color: $background-color;
+
+  &:hover,
+  &:focus {
+    border-color: $border-color-hover;
+    color: $color-hover;
+    background-color: $background-color-hover;
+  }
+}

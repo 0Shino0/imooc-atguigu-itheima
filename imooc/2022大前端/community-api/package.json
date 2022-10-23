@@ -1,0 +1,90 @@
+{
+  "name": "api",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack:debug": "node --inspect-brk ./node_modules/.bin/webpack --inline --progress",
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.config.prod.js",
+    "build:dev": "cross-env NODE_ENV=development webpack --config ./config/webpack.config.prod.js",
+    "clean": "rimraf dist",
+    "lint": "eslint src/ --ext .js --fix",
+    "dev": "cross-env NODE_ENV=development webpack --watch --config ./config/webpack.config.dev.js",
+    "debug": "nodemon --inspect=9229 ./dist/server.bundle.js"
+  },
+  "keywords": [],
+  "author": "brian@toimc.com",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
+    "bluebird": "^3.7.2",
+    "cron": "^1.8.2",
+    "dayjs": "^1.9.7",
+    "del": "^6.0.0",
+    "esdk-obs-nodejs": "^3.20.8",
+    "form-data": "^3.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-combine-routers": "^4.0.2",
+    "koa-compose": "^4.1.0",
+    "koa-compress": "^5.0.1",
+    "koa-helmet": "^6.0.0",
+    "koa-json": "^2.0.2",
+    "koa-jwt": "^4.0.0",
+    "koa-log4": "^2.3.2",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "make-dir": "^3.1.0",
+    "mongoose": "^5.11.6",
+    "nodemailer": "^6.4.16",
+    "qcloudsms_js": "^0.1.1",
+    "qs": "^6.9.4",
+    "redis": "^3.0.2",
+    "saslprep": "^1.0.3",
+    "sharp": "^0.26.3",
+    "svg-captcha": "^1.4.0",
+    "uuid": "^8.3.2",
+    "ws": "^7.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@koa/router": "^10.0.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.15.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.3.5",
+    "koa-router": "^10.0.0",
+    "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.6",
+    "nodemon-webpack-plugin": "^4.4.4",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "terser-webpack-plugin": "^5.0.3",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0",
+    "webpack-merge": "^5.6.1",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint"
+    ]
+  }
+}

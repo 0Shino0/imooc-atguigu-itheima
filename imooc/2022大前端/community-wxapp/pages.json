@@ -1,0 +1,142 @@
+{
+	"pages": [
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/msg/msg"
+		},
+		{
+			"path": "pages/hot/hot"
+		},
+		{
+			"path": "pages/center/center"
+		}
+	],
+	"subPackages": [
+		{
+			"root": "subcom-pkg",
+			"pages": [
+				{
+					"path": "search/search",
+					"style": {
+						"navigationBarTitleText": "搜索",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "auth/auth",
+					"style": {
+						"navigationBarTitleText": "toimc技术社区",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "auth/mobile-login",
+					"style": {
+						"navigationBarTitleText": "手机号登录",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "auth/mobile-code",
+					"style": {
+						"navigationBarTitleText": "请输入验证码",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "detail/detail",
+					"style": {
+						"navigationBarTitleText": "文章详情",
+						"enablePullDownRefresh": false,
+						"usingComponents": {
+							"parser": "/static/wxParse/index"
+						}
+					}
+				},
+				{
+					"path": "post/post",
+					"style": {
+						"navigationBarTitleText": "新建帖子",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "order/order",
+					"style": {
+						"navigationBarTitleText": "下单页面",
+						"enablePullDownRefresh": false
+					}
+				}
+			]
+		},
+		{
+			"root": "independent-pkg",
+			"pages": [
+				{
+					"path": "index/index",
+					"style": {
+						"navigationBarTitleText": "独立分包的页面"
+					}
+				}
+			],
+			"independent": true
+		}
+	],
+	"preloadRule": {
+		"pages/home/home": {
+			"network": "all",
+			"packages": [
+				"subcom-pkg"
+			]
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#999",
+		"selectedColor": "#02D199",
+		"borderStyle": "white",
+		"list": [
+			{
+				"text": "首页",
+				"pagePath": "pages/home/home",
+				"iconPath": "static/images/tab_home_no.png",
+				"selectedIconPath": "static/images/tab_home_yes.png"
+			},
+			{
+				"text": "消息",
+				"pagePath": "pages/msg/msg",
+				"iconPath": "static/images/tab_news_no.png",
+				"selectedIconPath": "static/images/tab_news_yes.png"
+			},
+			{
+				"text": "热门",
+				"pagePath": "pages/hot/hot",
+				"iconPath": "static/images/tab_popular_no.png",
+				"selectedIconPath": "static/images/tab_popular_yes.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/center/center",
+				"iconPath": "static/images/tab_my_no.png",
+				"selectedIconPath": "static/images/tab_my_yes.png"
+			}
+		]
+	},
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	}
+}

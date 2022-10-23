@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "node": false
+  },
+  "extends": [
+    /** @see https://eslint.vuejs.org/rules/ */
+    "plugin:vue/vue3-recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "globals": {
+    "WxLogin": "readonly"
+  }
+}

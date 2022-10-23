@@ -1,0 +1,56 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        Version: 1.0
+    image: api_online:1.0
+    container_name: api_online
+    restart: always
+    # env_file: .env
+    environment:
+      - DB_USER=toimc
+      - DB_PASS=long_random_pass_mongo
+      - DB_HOST=mongo
+      - DB_PORT=27017
+      - DB_NAME=community
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASS=long_random_pass_redis
+    ports:
+      - "10030:3000"
+      - "10031:3001"
+    volumes:
+      - /home/imooc/online:/app/public
+
+  mongo:
+    image: mongo
+    container_name: "mongodb"
+    restart: always
+    volumes:
+      - /home/imooc/db:/data/db
+      - /home/imooc/db/initdb.d:/docker-entrypoint-initdb.d/
+      # .sh & .js
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: testdb
+      MONGO_INITDB_USERNAME: toimc
+      MONGO_INITDB_PASSWORD: long_random_pass_mongo
+
+  redis:
+    image: redis
+    container_name: "redis"
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass long_random_pass_redis
+
+networks:
+  default:
+    external:
+      name: https

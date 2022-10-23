@@ -1,0 +1,110 @@
+// .p-0 { padding: 0 !important; }
+// .px-0 { padding-right: 0 !important;; padding-left: 0 !important;}
+// m - margin mx my  --- bootstrap
+@use "sass:map";
+
+// map.scss
+$spacers: (
+  0: 0,
+  1: 10px,
+  2: 20px,
+  3: 30px,
+  4: 40px,
+  5: 50px,
+  6: 60px,
+  7: 70px,
+) !default;
+$utils: (
+  pl: (
+    property: padding-left,
+    values: $spacers,
+  ),
+  pr: (
+    property: padding-right,
+    values: $spacers,
+  ),
+  pt: (
+    property: padding-top,
+    values: $spacers,
+  ),
+  pb: (
+    property: padding-bottom,
+    values: $spacers,
+  ),
+  ml: (
+    property: margin-left,
+    values: $spacers,
+  ),
+  mr: (
+    property: margin-right,
+    values: $spacers,
+  ),
+  mt: (
+    property: margin-top,
+    values: $spacers,
+  ),
+  mb: (
+    property: margin-bottom,
+    values: $spacers,
+  ),
+) !default;
+
+// ulities.scss
+$spacer: 8px;
+$spacers: map.merge(
+  $map1: (
+    0: 0,
+    1: 1 * $spacer,
+    2: 2 * $spacer,
+    3: 3 * $spacer,
+    4: 4 * $spacer,
+    5: 5 * $spacer,
+  ),
+  $map2: $spacers,
+);
+$utils: map.merge(
+  $map1: (
+    m: (
+      property: margin,
+      values: $spacers,
+    ),
+    mx: (
+      property: margin-left margin-right,
+      values: $spacers,
+    ),
+    p: (
+      property: padding,
+      values: $spacers,
+    ),
+    px: (
+      property: padding-left padding-right,
+      values: $spacers,
+    ),
+  ),
+  $map2: $utils,
+);
+
+// @for
+@each $key, $value in $utils {
+  // 取utils的 步进长度，循环的数据
+  // 确定了循环的长度
+  $values: map.get(
+    $map: $value,
+    $key: values,
+  );
+
+  // 循环产生不同的spacer对应的样子
+  @each $item-key, $item-value in $values {
+    // .px-{spacer-item} { padding-left: spacer-value !important!}
+    // 取多个元素的样式进行遍历
+    $properties: map.get(
+      $map: $value,
+      $key: property,
+    );
+    .#{$key}-#{$item-key} {
+      @each $property in $properties {
+        #{$property}: $item-value !important;
+      }
+    }
+  }
+}

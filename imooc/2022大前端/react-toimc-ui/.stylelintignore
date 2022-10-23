@@ -1,0 +1,5 @@
+/dist/*
+/public/*
+public/*
+coverage/*
+index.html

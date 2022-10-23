@@ -1,0 +1,99 @@
+$spacer: 10px !default;
+$spacers: () !default;
+
+$spacers: map-merge(
+  (
+    0: 0,
+    1: $spacer,
+    2: $spacer * 2,
+    3: $spacer * 3,
+    4: $spacer * 4,
+    5: $spacer * 5
+  ),
+  $spacers
+);
+
+$item: () !default;
+$utilities: map-merge(
+  (
+    "padding": (
+      property: padding,
+      class: p,
+      values: $spacers
+    ),
+    "padding-bottom": (
+      property: padding-bottom,
+      class: pb,
+      values: $spacers
+    ),
+    "padding-top": (
+      property: padding-top,
+      class: pt,
+      values: $spacers
+    ),
+    "padding-left": (
+      property: padding-left,
+      class: pl,
+      values: $spacers
+    ),
+    "padding-right": (
+      property: padding-right,
+      class: pr,
+      values: $spacers
+    ),
+    "margin": (
+      property: margin,
+      class: m,
+      values: $spacers
+    ),
+    "margin-left": (
+      property: margin-left,
+      class: ml,
+      values: $spacers
+    ),
+    "margin-right": (
+      property: margin-right,
+      class: mr,
+      values: $spacers
+    ),
+    "margin-top": (
+      property: margin-top,
+      class: mt,
+      values: $spacers
+    ),
+    "margin-bottom": (
+      property: margin-bottom,
+      class: mb,
+      values: $spacers
+    ),
+    "padding-x": (
+      property: padding-right padding-left,
+      class: px,
+      values: $spacers
+    ),
+    "padding-y": (
+      property: padding-top padding-bottom,
+      class: py,
+      values: $spacers
+    ),
+  ),
+  $item
+);
+
+
+@each $key, $utility in $utilities {
+  $values: map-get($utility, values);
+  @each $key, $value in $values {
+    $properties: map-get($utility, property);
+    $property-class: map-get($utility, class);
+    $property-class-modifier: if($key, "-" + $key, "");
+    @each $property in $properties {
+      .#{$property-class + $property-class-modifier} {
+        @each $property in $properties {
+            #{$property}: $value !important;
+          }
+        }
+    }
+  }
+
+}

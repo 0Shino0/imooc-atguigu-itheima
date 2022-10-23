@@ -1,0 +1,35 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        Version: ${Version}
+    image: api_online:${tag}
+    container_name: api_online
+    restart: always
+    # env_file: .env
+    environment:
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_HOST=$DB_HOST
+      - DB_PORT=$DB_PORT
+      - DB_NAME=$DB_NAME
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - REDIS_PASS=$REDIS_PASS
+      - WX_SECRET=$WX_SECRET
+      - WX_APPID=$WX_APPID
+      - OBS_KEYID=$OBS_KEYID
+      - OBS_ACCESSKEY=$OBS_ACCESSKEY
+    ports:
+      - "${PORT}:3000"
+      - "${WS_PORT}:3001"
+    volumes:
+      - /home/imooc/online:/app/public
+
+networks:
+  default:
+    external:
+      name: https

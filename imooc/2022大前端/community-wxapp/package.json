@@ -1,0 +1,27 @@
+{
+  "name": "community-wxapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "lint": "eslint --ext vue --ext js pages --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "node-sass": "^6.0.1",
+    "sass-loader": "10"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.6",
+    "prismjs": "^1.24.1",
+    "uview-ui": "^1.8.4"
+  }
+}

@@ -1,0 +1,57 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        Version: ${Version}
+    image: api_online:${tag}
+    container_name: api_online
+    restart: always
+    # env_file: .env
+    environment:
+      - DB_USER=$DB_USER
+      - DB_PASS=$DB_PASS
+      - DB_HOST=$DB_HOST
+      - DB_PORT=$DB_PORT
+      - DB_NAME=$DB_NAME
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - REDIS_PASS=$REDIS_PASS
+    ports:
+      - '${PORT}:3000'
+      - '${WS_PORT}:3001'
+    volumes:
+      - /home/imooc/online:/app/public
+
+  mongo:
+    image: mongo
+    container_name: 'mongodb'
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - mongo:/data/db
+    ports:
+      - '27017:27017'
+  redis:
+    image: 'redis'
+    restart: always
+    container_name: 'redis'
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
+volumes:
+  cache:
+    driver: local
+  mongo:
+    driver: local
+
+networks:
+  default:
+      name: https

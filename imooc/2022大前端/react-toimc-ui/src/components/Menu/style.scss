@@ -1,0 +1,103 @@
+.menu {
+  display: flex;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e6e6e6;
+  padding-left: 0;
+  flex-wrap: wrap;
+
+  li {
+    list-style: none;
+  }
+
+  .menu-item {
+    &.disabled {
+      pointer-events: none;
+      color: var(--color-disabled-text);
+    }
+  }
+
+  > .menu-item {
+    position: relative;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+
+    &:hover,
+    &.active {
+      border-bottom: 2px solid var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    &.open {
+      // .submenu {
+      //   display: block;
+
+      //   // opacity: 1;
+      // }
+
+      .submenu-title:hover {
+        .arrow {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .submenu {
+    position: absolute;
+    left: 50%;
+
+    // display: none;
+    padding-left: 0;
+    transform: translate(-50%, 10px);
+
+    // background: red;
+
+    // opacity: 0;
+    // transition: opacity 0.3s ease-in;
+
+    .menu-item {
+      color: var(--color-text-0);
+
+      &:hover,
+      &.active {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .submenu-title {
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &.vertical {
+    flex-direction: column;
+
+    .submenu {
+      position: relative;
+    }
+
+    .menu-item {
+      &:not(.submenu-item) {
+        &.active {
+          border-right: 2px solid var(--color-primary);
+        }
+      }
+    }
+
+    // active open的submenu旋转icon
+    .active.open {
+      .arrow {
+        transform: rotate(180deg);
+      }
+    }
+
+    > .menu-item {
+      border-bottom: none;
+    }
+  }
+}
