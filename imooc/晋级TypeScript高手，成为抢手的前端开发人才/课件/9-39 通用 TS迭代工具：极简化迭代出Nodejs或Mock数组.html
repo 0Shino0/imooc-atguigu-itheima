@@ -1,0 +1,33 @@
+<div class="work-markdown-content">    <div class="content">     <div class="cl-preview-section"><p>需求：写一个通用 TS 工具类，要求实现如下：</p>
+</div><div class="cl-preview-section"><ol>
+<li>
+<p>可用于迭代模拟后台 mock 中的数组或 nodejs 框架从数据表取出的数组数据。</p>
+</li>
+<li>
+<p>可以移植到任意一个项目中，极简化迭代代码.</p>
+</li>
+<li>
+<p>模拟后台数据表对应的类，现在要求按照上述要求 用 TS 工具类迭代出 stuArr</p>
+</li>
+</ol>
+</div><div class="cl-preview-section normal-code"><pre class=" language-js"><code class="prism  language-js"> <span class="token keyword">class</span> <span class="token class-name">Student</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>stuname<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>stuname <span class="token operator">=</span> stuname
+  <span class="token punctuation">}</span>
+  stuname<span class="token operator">!</span><span class="token punctuation">:</span> string
+  <span class="token function">study</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"学生:"</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>stuname<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">eat</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stuname <span class="token operator">+</span> <span class="token string">"吃饭"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> stuArr<span class="token punctuation">:</span> Array<span class="token operator">&lt;</span>Student<span class="token operator">&gt;</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+stuArr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token string">"wangwu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+stuArr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token string">"lisi"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ul></pre>
+<div class="code-top">                            <div class="left"><span>代码块</span><i class="imv2-code"></i></div>                            <div class="right">                                <span class="copy">复制<textarea type="text" class="code" style="width:1px;height:1px;"></textarea></span>                                <span class="preview">预览</span>                                <div class="copysuccess hide">复制成功！</div>                            </div>                        </div></div>    </div>    <!-- <div class="content-more">     <div class="shadow-bg"></div>     <div class="white-bg">      <a class="js-hide-mask-layer" href="javascript:;">查看完整内容</a>     </div>    </div> -->   </div>
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

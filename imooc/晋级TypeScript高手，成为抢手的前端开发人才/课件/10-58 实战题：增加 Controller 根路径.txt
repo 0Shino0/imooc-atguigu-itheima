@@ -1,0 +1,33 @@
+实战题：增加 Controller 根路径
+作业题 — 增加 Controller 根路径 【实战题】
+作业题目的：
+
+理解 nestjs 请求访问路径中的根路径。
+
+作业题目：
+
+如果 控制器装饰器增加了根路径 比如： controller ("/home")，那又该如何处理请求路径？
+
+@Controller("/usermodule")
+class UserController {
+
+  //@Autowired("userServiceImpl")//  修改Inject 为更专业的 Autowired 单词
+  @Autowired("userServiceImpl")
+  @Singleton(true)
+  private userServiceImpl!: UserServiceInter // 修改
+  .....
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+代码块
+请在小节下方的问答区写出具体实现代码，与其它小伙伴来一起讨论～～
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

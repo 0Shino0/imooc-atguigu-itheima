@@ -1,0 +1,43 @@
+挑战较难题— 模块注册中的响应式实现
+挑战较难题 —— 模块注册中的响应式实现 【前端职位晋级题】
+作业背景和作业描述：
+
+如下：12-28 中我们页面代码，当 onMounted 事件执行完成后，computed 函数并没有及时响应数据到页面上， 主要因为 onMounted 改变的 state 并不是一个响应式的 state , 本作业题就是为了解决这个问题而来。
+
+export default defineComponent({
+  setup() {
+    const store = useStore<RootState>()
+    onMounted(() => {
+      console.log('onMounted')
+      store.dispatch('foodSortModule/FindFoodSortList')
+    })
+
+    return {
+      foodSortList: computed(() => {
+        console.log('computed')
+        return getFoodSortModuleGetters['foodSortModule/getFoodSortList']
+      }),
+    }
+  },
+})
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+代码块
+请在小节下方的问答区写出具体答案，与其它小伙伴来一起讨论～～
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

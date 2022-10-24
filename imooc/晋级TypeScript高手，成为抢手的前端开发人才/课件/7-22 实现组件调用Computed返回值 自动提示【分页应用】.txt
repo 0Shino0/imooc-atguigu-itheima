@@ -1,0 +1,27 @@
+实现组件调用Computed返回值 自动提示【分页应用】
+** Vue3+TS 实战应用 —— 实现 组件调用 Computed 返回值 自动提示【分页应用】**
+
+训练技能点:
+
+type 对象类型技巧性应用
+
+作业描述:
+
+阅读并上机测试下面代码【React 技术栈的同学可以掌握思路即可】，自己定义出 Pager 类型，基础属性有 pageNum【当前第几页】， pageSize【每一页的最大记录数】 ，total 【总记录数】。要求实现如下：
+
+保证没有编译错误 2. 保证组件调用 pager 变量 时 能自动提示属性
+    // 1. 多属性对象可以赋值给少属性对象
+    type TypStu = { username: string,age:number }
+    let liPing = { username: "wangwu", age: 23,address:"beijing" }
+    let zhangSan: TypStu = liPing
+	
+	// 2  获取异步分页数据代码片段
+	type Pager={
+        
+    }
+    let pager:Pager = computed(() => {
+      return ......
+    })
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

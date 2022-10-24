@@ -1,0 +1,50 @@
+<div class="work-markdown-content">    <div class="content">     <div class="cl-preview-section"><h4 id="如何用泛型工具来合并多模块对象？【企业项目实战题】">如何用泛型工具来合并多模块对象？【企业项目实战题】</h4>
+</div><div class="cl-preview-section"><p>获取 S100 代码处的类型：</p>
+</div><div class="cl-preview-section normal-code"><pre class=" language-js"><code class="prism  language-js"> <span class="token comment">//  对象准备</span>
+<span class="token keyword">const</span> userModule <span class="token operator">=</span> <span class="token punctuation">{</span>
+  userName<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+  getOrder<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    orderId<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+    orderName<span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> roleModule <span class="token operator">=</span> <span class="token punctuation">{</span>
+  roleId<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+  meta<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    roleName<span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> rightModule <span class="token operator">=</span> <span class="token punctuation">{</span>
+  rightId<span class="token punctuation">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+  meta<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 写一个泛型工具，获取如下类型？// S100</span>
+type  moduleCollectionObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    user<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        userName<span class="token punctuation">:</span> string<span class="token punctuation">;</span>
+        getOrder<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            orderId<span class="token punctuation">:</span> string<span class="token punctuation">;</span>
+            orderName<span class="token punctuation">:</span> string<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token operator">&amp;</span> <span class="token punctuation">{</span>
+    role<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        roleId<span class="token punctuation">:</span> string<span class="token punctuation">;</span>
+        meta<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            roleName<span class="token punctuation">:</span> string<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token operator">&amp;</span> <span class="token punctuation">{</span>
+    right<span class="token punctuation">:</span> string<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li></ul></pre>
+<div class="code-top">                            <div class="left"><span>代码块</span><i class="imv2-code"></i></div>                            <div class="right">                                <span class="copy">复制<textarea type="text" class="code" style="width:1px;height:1px;"></textarea></span>                                <span class="preview">预览</span>                                <div class="copysuccess hide">复制成功！</div>                            </div>                        </div></div><div class="cl-preview-section"><p><strong>请在小节下方的问答区写出具体实现代码，与其它小伙伴来一起讨论～～</strong></p>
+</div>    </div>    <!-- <div class="content-more">     <div class="shadow-bg"></div>     <div class="white-bg">      <a class="js-hide-mask-layer" href="javascript:;">查看完整内容</a>     </div>    </div> -->   </div>
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

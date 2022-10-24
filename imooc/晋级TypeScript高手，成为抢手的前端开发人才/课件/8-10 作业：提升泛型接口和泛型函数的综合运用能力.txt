@@ -1,0 +1,21 @@
+作业：提升泛型接口和泛型函数的综合运用能力
+8-8 图文：作业题 — 理解 reduce 底层泛型函数和泛型接口【底层真实应用题】
+作业目的：
+
+作业描述：请写一个 reduce 的例子，结合例子解释泛型 T , 泛型 T []，泛型 U 的真实理解。
+
+interface Array<T> { 
+    	......
+	   reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: 		          				number, array: T[]) => U, initialValue: U): U
+       .....
+}
+1
+2
+3
+4
+5
+代码块
+请把自己的想法写在小节下方的问答区，与其它小伙伴来一起讨论～～
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

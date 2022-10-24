@@ -1,0 +1,33 @@
+深入思考题—实现更彻底的依赖注入
+深入思考题 —— 实现更彻底的依赖注入 【前端架构师面试题】
+思考题目的：
+
+进一步提高前端架构思考能力，更彻底掌握依赖注入对项目带来的高扩展性。
+
+题目：
+
+我们知道在 HomeController 中 获取 userService 是按照下面第 S100 行代码这样获取的，但实际开发时我们希望看到更彻底的依赖注入，如何不写 S100 行就能直接获取 userService 对象 ，用更简洁的方式来调用？
+
+loginprocess(req: Request, res: Response): void {
+
+    console.log("loginprocess=this:", this);
+    let session = getSession(req);
+    let UserServiceImpl: UserServiceImpl =
+  Reflect.getOwnPropertyDescriptor(UserController.prototype,"userServiceImpl").value  // S100
+    let userinfofrmdb: Userinfo = UserServiceImpl.Login(req.body.username, req.body.pwd)
+
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+代码块
+请在小节下方的问答区写出具体答案，与其它小伙伴来一起讨论～～
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）

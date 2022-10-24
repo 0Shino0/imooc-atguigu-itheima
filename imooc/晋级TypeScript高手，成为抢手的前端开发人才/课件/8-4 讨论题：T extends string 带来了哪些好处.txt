@@ -1,0 +1,41 @@
+思考题： 针对 8-3 节 sortChinese 方法，如果使用 nextSortChinese 和 anotherSortChinese 这两种方法来实现是否可以，那你觉得哪一种方法更好？为什么？
+
+function sortChinese<T>(arr: Array<T>): T[] { 
+  return arr.sort(function (firstnum, secondnum) {
+    return (firstnum as any).localeCompare(secondnum, "zh-CN")
+  })
+}
+
+function nextSortChinese(arr: Array<string>) {
+  return arr.sort(function (firstnum, secondnum) {
+    return (firstnum as any).localeCompare(secondnum, "zh-CN")
+  })
+}
+
+function anotherSortChinese<T extends string>(arr: Array<T>) {
+  return arr.sort(function (firstnum, secondnum) {
+    return (firstnum as any).localeCompare(secondnum, "zh-CN")
+  })
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+代码块
+请在小节下方的问答区写出答案，与其它小伙伴来一起讨论～～
+
+【认准一手加微信307570512 】
+ 代下载高价回收正版课程（换课换vip，帮回血）
