@@ -1,0 +1,11 @@
+{
+  "name": "muke",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev":"node a.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
