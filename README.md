@@ -1,5 +1,5 @@
 # imooc-atguigu-itheima(持续更新)
-https://visitor-badge.glitch.me/badge?page_id=0Shino0/imooc-atguigu-itheima
+<img src="https://visitor-badge.glitch.me/badge?page_id=0Shino0" alt="访客统计" />
 
 
 总结 | 学习 
